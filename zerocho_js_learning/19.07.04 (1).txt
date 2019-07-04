@@ -10,3 +10,25 @@
 	=> 대답을 첫 제시어로 저장
   -2 no
 	=> 대답을 다시 받는다
+
+==> 코드 짜보기!
+
+var word = '제로초';
+
+while(true) {
+
+    var answer = prompt(word);
+
+	if (word[word.length-1] === answer[0]) {
+
+		alert('딩동댕');
+
+		word = answer;
+
+    	} else {
+
+		alert('땡! 다시 입력하기');
+
+    }
+
+}
