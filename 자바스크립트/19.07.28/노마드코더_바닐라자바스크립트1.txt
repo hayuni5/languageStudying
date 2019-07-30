@@ -1,0 +1,49 @@
+console.log('Im working. Im JS the Beauty');
+/*
+TypeError: Assignment to constant variable.
+    at /index.js:5:3
+>> assignment = 대입
+>> 5:3 == 5번째 줄 3번째 문자에!
+
+프로그래머라면 에러를 읽을 줄 알아야 한다.
+*/
+
+const monday = "Mon";
+const tuesday = "t";
+const wednesday = "w";
+const thursday = "th";
+const friday = "fr";
+const saturday = "sat";
+const sunday = "sn";
+
+console.log(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+
+// array - 여러 데이터를 하나로 묶음
+
+const sth = "something"
+const daysOfWeek = ["Mon", "Tue", "wed", "thr", "fri", "sat", "sun", true, sth];
+console.log(daysOfWeek);
+
+const hayunInfo = ["Hayun", "25", true, "Seoul"]; //배열
+
+const hayunInfo2 = {
+  name: "Hayun",
+  age: 25,
+  gender: "female",
+  isHandsome: true,
+  favMovies: ["금자씨", "Lion King"],
+  favFood: [{ name: "Kimchi", fatty: false },
+            { name: "pasta", fatty: true }]
+}
+
+console.log(hayunInfo2.gender)
+
+hayunInfo2.gender = "male";
+//object 내 속성의 값을 바꾸는 것은 문제가 되지 않는다. 객체가 const로 선언되었을지라도!
+
+console.log(hayunInfo2.gender);
+
+//db에서 가져온 리스트 데이터라면 array를 선택
+//데이터를 가져와 합쳐야 한다면.. array를 객체 안에 넣을 수 있다.
+
+console.log(hayunInfo2);

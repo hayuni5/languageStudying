@@ -1,0 +1,86 @@
+const hayunInfo2 = {
+  name: "Hayun",
+  age: 25,
+  gender: "female",
+  isHandsome: true,
+  favMovies: ["금자씨", "Lion King"],
+  favFood: [{ name: "Kimchi", fatty: false },
+            { name: "pasta", fatty: true }]
+}
+
+console.log(console);
+
+//console.log, alert 등... => 빌트인 함수
+
+/* 
+a piece of code which can be used as many time as I WANT.
+=> function ; 함수
+ */
+
+              //인자(argument) = just like variable! 변수명 같은 걸 써줌. 함수 안에서 쓸 이름.
+              //함수에게 외부에 있는 데이터를 주는 방법
+              //여기서 쓰이는 이름과 데이터는 상관이가 없음..
+function sayHello(potato, chicken) {
+  console.log('Hello', potato, "you have", chicken, "years of age.");
+}
+
+sayHello('Hayun', 25);
+console.log('Hi!');
+
+console.log("\n");
+
+function greeting(name, age) {
+  console.log("Hello ", name, " you are", age, " years old." );
+}
+
+greeting('Hayun', 25);
+
+
+//function helloing(name, age){
+//  console.log(`Hello ${name} you are ${age} years old.`)
+//}
+
+function helloing(name, age){
+  return `Hello ${name} you are ${age} years old.`;
+}
+
+helloing('Hayun', 25);
+
+const greetHayun = helloing('Hayun', 25);
+      //return value of the function 'helloing'
+
+console.log(greetHayun);
+/* 
+백틱과 큰따옴표&작은따옴표는 매우 다름!!!!
+그리고 console.log()와 returning something은 매우 다릅니다.. 컴퓨터과학의 기본!
+
+console.log는 객체야.
+ */
+
+const calculator = {
+   plus: function(a,b) {
+     return a + b;
+   },
+   minus: function(c,d) {
+     return c - d;
+   },
+   multiply: function(e,f){
+     return e * f;
+   },
+   devide : function(g,h){
+     return g / h;
+   },
+   pow: function(k,l){
+     return k**l;
+   }
+}
+
+const plused = calculator.plus(5, 5); //함수기능을 객체 안에 구현해야.
+const minused = calculator.minus(5, 5);
+const multiplied = calculator.multiply(5, 4);
+const powerof = calculator.pow(2, 4);
+
+console.log("\n" + plused);
+console.log("\n" + minused);
+console.log("\n" + multiplied);
+console.log("\n" + powerof);
