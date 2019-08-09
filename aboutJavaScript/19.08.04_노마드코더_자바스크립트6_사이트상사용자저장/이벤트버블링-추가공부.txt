@@ -23,9 +23,22 @@
 
 ##javascript 코드
 ================================================
-// div영역에 클릭 이벤트 설정
-// p 영역에 클릭 이벤트 설정
-// span 영역에 클릭 이벤트 설정
 	
+//DIV 영역에 클릭 이벤트 설정
+$("#div_").on("click",function(event){
+    $("#console").append("<br>DIV 클릭");
+});
+
+//P 영역에 클릭 이벤트 설정
+$("#p_").on("click",function(event){
+    $("#console").append("<br>P 클릭");
+});
+
+//SPAN 영역에 클릭 이벤트 설정
+$("#span_").on("click",function(event){
+    $("#console").append("<br>SPAN 클릭");
+});
+
+
 	<br>
 	</section>
