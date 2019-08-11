@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #dialogoverlay {
+            display: none;
+            opacity: .8; /* user can see through it. */
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background: #ffffff;
+            width: 100%;
+            z-index: 10;
+            
+        }
+
+        #dialogbox {
+            display: none;
+            position: fixed;
+            background: #000;
+            border-radius: 7px;
+            width: 550px;
+            z-index: 10;
+            
+        }
+
+        #dialogbox > div { background: #ffffff; margin: 8px; }
+        #dialogbox > div > #dialogboxhead { background: #666666; font-size: 19px; padding:10px; color: #CCC;}
+        #dialogbox > div > #dialogboxbody { background: #333333; padding: 20px; color: #ffffff; }
+        #dialogbox > div > #dialogboxfoot { background: #666666; padding: 10px; text-align:right; }
+
+    </style>
+    <script>
+        function CustomAlert() {        //2 methods in it!
+            this.render = function(dialog) {
+                var winW = window.innerWidth;
+                var winH = window.innerHeight;
+                var dialogoverlay = document.getElementById('dialogoverlay');
+                var dialogbox = document.getElementById('dialogbox');
+                dialogoverlay.style.display = "block";    //css에서 display:none 이었던 것이 이 함수로써 block으로 속성값이 바뀐다.
+                dialogoverlay.style.height = winH+"px";
+                dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+                                                //dialogbox width divided by two => and it makes the dialogbox located in the middle of the screen.
+                dialogbox.style.top = "100px";
+                dialogbox.style.display = "block";
+                document.getElementById('dialogboxhead').innerHTML = "Acknowledge this message.";
+                document.getElementById('dialogboxbody').innerHTML = dialog;
+                document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+            }
+            this.ok = function() {
+                document.getElementById('dialogbox').style.display = "none";
+                document.getElementById('dialogoverlay').style.display = "none";
+            }
+        }
+        var Alert = new CustomAlert();  //new instance name for CustomAlert Object.
+    </script>
+</head>
+<body>
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+        <div>
+            <div id="dialogboxhead"></div>
+            <div id="dialogboxbody"></div>
+            <div id="dialogboxfoot"></div>
+        </div>
+    </div>
+    <h1>My web document content</h1>
+    <h2>My web document content</h2>
+    <button onclick="alert('you look good today.')"> default alert</button>
+    <button onclick="Alert.render('you look good today.')"> Custom alert</button>
+    <h3>My web document content...</h3>
+</body>
+</html>

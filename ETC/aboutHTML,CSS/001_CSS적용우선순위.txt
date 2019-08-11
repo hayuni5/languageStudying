@@ -1,0 +1,8 @@
+1) 속성값 뒤에 !important
+2) html태그에 inline으로 직접 style속성 지정한 경우
+3) id 선택자 ('#~')
+4) class선택자 ('.~') ; virtual class 지정한 경우
+5) 선택자가 태그이름인 경우
+6) 상위 객체의 상속된 속성
+
+정보출처 : https://mainia.tistory.com/3243?category=591853
