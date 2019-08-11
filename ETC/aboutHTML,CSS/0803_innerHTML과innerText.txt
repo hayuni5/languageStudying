@@ -1,0 +1,17 @@
+html파일에
+	<body>
+		<div id="test"></div>
+	</body>
+
+가 있다고 치자.
+
+js파일에
+	var HTML = '<div>테스트</div>';
+가 선언되어있는 상태에서...
+
+1. document.getElementById("test").innerHTML = HTML;
+	=> js파일에 선언된 HTML변수(HTML태그가 포함됨)가 html파일 내에 태그째로 그대로 적용됩니다.
+	    그래서 html파일 내 id가 test인 태그가 차지하는 공간에 '테스트'라는 문자만 보입니다.
+2. document.getElementById("test").innerText = HTML;
+	=> js파일에 선언된 HTML변수(HTML태그가 포함됨)를 그저 통으로 하나의 문자열변수로 취급,
+	    html파일 내 id가 test인 태그가 차지하는 공간에 HTML변수의 내용 모두 문자열로 보여집니다. 
