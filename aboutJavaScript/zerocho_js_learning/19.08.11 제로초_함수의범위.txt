@@ -1,0 +1,115 @@
+자바스크립트에서 전역변수를 만드는 일은 최대한 지 양 해야한다
+		=> window객체에 생성됨
+
+스코프(Scope) = 범위
+==============
+지역변수는 전역변수에 영향을 끼칠 수 없당
+함수 안에서 선언된 변수는 해당 함수 안에서만 사용 가능하다.
+
+예제1)
+	var x = 'global';
+	function ex() {
+		x = 'change';		=>여기서 전역변수 x 의 값이 바뀝니다.
+	}
+	ex();
+	alert(x);			//'change'
+
+	
+
+
+자바스크립트는 변수의 범위를 호출한 함수의 지역 스코프 -> 전역변수가 있는 전역스코프로 넓혀가며 찾음
+	=> ### 스코프체인(scope chain) ### -전역변수와 지역변수 간 관계에서 출발한 개념
+=================
+
+예제1)
+	var name = 'zero';				=> 전역변수 name
+	function outer() {				=> outer() 정의하기
+		console.log('외부', name);			콘솔창: 외부 + 변수 name의 값을 찾아 띄우기
+		function inner() {				
+			var enemy = 'nero';			 지역변수 enemy의 값에 nero 배정하기
+			console.log('내부', name);		콘솔창에 내부 + 변수 name의 값을 찾아 띄우기
+		}
+		inner();					inner() 실행하기
+	}
+outer();						=>outer() 실행하기 - 콘솔창 : 외부 zero / var enemy = zero 로 값 생성 후 배정 / 내부 zero
+console.log(enemy);			//undefined
+	내부 함수에서는 외부 함수의 변수에 접근 가능하지만,
+	외부 함수에서는 내부 함수의 변수에 접근할 수 없습니다.
+		-> console.log() 함수가 inner()함수의 변수 enemy에 접근하지 못함
+
+
+렉시컬 스코핑(lexical scoping) == 정적스코프
+==============
+스코프(범위)는 함수를 """선언할 때""" 생김
+
+예제1)
+	var name = 'zero';
+	function log() {
+		console.log(name);
+	}
+
+	function wrapper() {
+		var name = 'nero';
+		log();
+	}
+
+	wrapper();			//zero
+
+	함수를 처음 선언하는 순간, 함수 내부 변수는 자기 스코프로부터 가장 가까운 곳에 있는 변수를 계속 참조하게 됨
+	log 함수 안의 name변수는 가장 가까운 전역변수 name을 참조하게 됨. 그래서 wrapper() 안에서 log()를 호출해도
+	name='nero'가 아닌 전역변수 name='zero'가 콘솔창에 뜨는 것~
+
+
+
+
+전역변수를 사용하다보면, 우연의 일치로 변수를 덮어쓰게 될 수 있음
+해결?
+	네임스페이스 만들기 == 전역 변수 대신, 함수 안에 넣어 지역변수로 만들기 / 객체 내 속성으로 만들기
+예제)
+	 var obj = {
+		x : 'local',
+		y : function() {
+			alert(this.x);
+		}
+	}
+	=> 이 경우, 값에 접근하려면 obj.x나 obj.y()로 접근해야 함 - 다른 사람이 쓴 코드의 변수와 겹칠 일이 없다!
+		그러나 누군가 고의적으로 속성을 바꿀 수 있다.. 코드 밑에 스크립트를 추가해서라든지..
+
+		(고의적변경예제)
+			var obj = {
+				x : 'local',
+				y : function() {
+					alert(this.x);
+				}
+			}
+			obj.x = 'hacked';
+			obj.y();			//local이 아니라 hacked가 출력됨
+
+		이를 방지하려면..코드를 약간 복잡하지만 이렇게 바꿔 짜는 것
+		
+		(고의적변경방지 예제)
+			var another = function() {
+				var x = 'local';
+				function y() {
+					alert(x);
+				}
+				return { y: y };
+			}
+			var newScope = another();
+
+				=> another(); 하는 순간 return에 의해 { y: function () { alert(x) } }; 가 newScope에 저장됨
+				     이제 newScope를 통해 y에 접근가능함. x에는 접근불가 ( return문으로써 y를 공개하고 x는 비공개 설정했기 때문)
+				     위 예제를 간단히 바꾸면
+				
+		     	(고의적변경방지 예제-ordered in different way)
+			var newScope = (function() {
+				var x = 'local';
+				return {
+				   y: function() {
+					alert(x);
+				   }
+				};
+			})();
+				=>(function() {})(); 구문이 이용됨. ==IIFE(즉시 호출 함수 표현식-Immediately Invoked Function Expression) ==모듈 패턴
+							    함수 선언 즉시 실행!
+							    비공개 변수가 없는 함수에 비공개변수 기능을 만들어줌
