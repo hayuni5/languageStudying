@@ -1,0 +1,26 @@
+.toDoForm {
+  width: 100%;
+  text-align: center;
+}
+
+.toDoForm > input {
+  width: 40%;
+  text-align: center;
+}
+
+ul {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+li span {
+  margin: 0 2%;
+}
+
+li button {
+  color: brown;
+  font-weight: bold;
+}
