@@ -1,0 +1,17 @@
+JS
+====
+source : https://developer.mozilla.org/ko/docs/Web/API/Fetch_API
+
+Fetch API
+- 일반 객체로 Request와 Response가 포함
+- fetch()를 불러들이는 경우, 취득할 리소스를 반드시 매개변수/인자로 지정해야함
+	=> Promise객체를 반환
+	=> Request가 성공하든 실패하든 해당 통신에 대한 	    Response객체가 취득됨
+	=> 이후 콜백함수의 매개변수로 담긴 Response객체에는
+	     포함된 컨텐츠와 그에 대한 처리방법이 담긴 메소드가 	들어있음
+- fetch()의 두번째 인자; 초기화에 사용되는 객체 정의(생략가능)
+	-> Fetch API의 Request(리퀘스트 리소스 표현 인터페이스) 참조
+
+
+			###### DIVIDE & CONQUER ######
+				쪼개서 공부해라!!
