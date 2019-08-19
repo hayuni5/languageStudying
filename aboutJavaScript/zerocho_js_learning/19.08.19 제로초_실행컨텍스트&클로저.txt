@@ -58,3 +58,33 @@
 			scopeChain: ['say 변수객체', '전역 변수객체'],
 			this: window,
 		}
+
+	차례로 (8), (9), (10) 실행... say 컨텍스트 안에서 찾을 수 없는 변수는 scope chain을 따라 올라가 상위 변수객체에서 찾는다.
+	(10)에서 wow()가 호출 -> wow 컨텍스트 생성
+
+		'wow 컨텍스트': {
+			변수객체: {
+				arguments: [{word : 'hello'}],
+				variable: null,
+			},
+			scopeChain: ['wow 변수객체', '전역 변수객체'],
+			this: window
+		}
+
+	wow함수 종료 후 wow컨텍스트 소멸 -> say() 실행 완료-> say컨텍스트 소멸-> 전역컨텍스트 소멸
+
+		### 컨텍스트 개념 + 이벤트루프 => 자바스크립트의 모든 문제를 풀 수 있음! ### (이벤트루프는 190820날 공부)
+
+
+호이스팅 ->컨텍스트로 분석해보자
+-변수 선언&초기화 시 선언부가 최상단으로 끌어올려지는 현상
+==========
+
+예제)
+	console.log(zero);			//에러가 아닌 undefined
+	sayWow();				//②정상적으로 wow가 콘솔창에 출력됨
+	function sayWow() {
+		console.log('wow');
+	}				//①함수 표현식이 아닌 함수 선언식-통째로 끌어올려지므로
+	var zero = 'zero';
+
