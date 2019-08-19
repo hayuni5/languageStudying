@@ -1,0 +1,60 @@
+실행컨텍스트 : Javascript가 왜 그렇게 동작하는지를 설명해줌
+- 복잡한 개념이므로 ... 잘 따라오셈
+
+실행 """컨텍스트""" context == 문맥 == 코드의 실행환경
+
+			#### 포기하지 마세요!! 차분히 순서를 따라가시면 됩니다 ####
+
+예제)
+	var name = 'zero';				//(1)변수 선언	(6) 변수 대입
+	function wow(word) {			//(2)변수 선언	(3) 변수 대입 -매개변수 word, 바디실행문
+		console.log(word + ' ' + name);	//(11)
+	}
+
+	function say() {				//(4)변수 선언	(5)변수 대입 -say()의 2행, 3행
+		var name = 'nero';			//(8)
+		console.log(name);			//(9)
+		wow('hello');			//(10)
+	}
+	say();					//(7)
+
+	=> 실행결과: nero, hello zero
+
+<<컨텍스트의 원칙 4가지>>
+
+(1) 코드 실행(=브라우저가 스크립트를 로딩해서 실행)
+	- 전역 컨텍스트 하나 생성:모든 것을 포함, 모든 것을 관리하는 환경, 페이지종료									시까지 유지
+(2) 함수 호출할 때마다 컨텍스트가 생김
+(3) 컨텍스트 생성시 컨텍스트 내부에 변수객체(arguments, variable), scope chain, this가 생성됨
+(4) 컨텍스트 생성 후 함수 실행, 사용되는 변수들은 변수 객체 안에서 값을 찾고, 없다면 scope chain(더 넓은 범위로..)을 따라올라가며 찾습니다.
+(5) 함수 실행 마무리 시, 해당 컨텍스트 사라짐-클로저 제외 / 페이지종료시 전역컨텍스트 사라짐
+
+	§ 전역 컨텍스트는 argument-함수의 인자-가 없음
+	§ 컨텍스트원칙(2)에 의해 variable이 생성됨 - 스코프의 변수들 생성; 예제에서는 name, wow, say가 있음
+	§ scope chain (자기 자신과 상위 스코프들의 변수객체)은 전역 변수객체.
+	  this의 경우, 따로 설정되어있지 않으면 기본값인 window임 -> 바꾸려면? new나 bind 이용 -따로 찾아보셈-
+
+	§ 위 내용을 객체 형식으로 표현하면
+
+		'전역 컨텍스트': {
+ 			 변수객체: {
+			    arguments: null,
+			    variable: ['name', 'wow', 'say'],	//wow, say -둘다 함수임-는 선언과 동시에 대입 (∵호이스팅-하단 설명)
+			  },
+			  scopeChain: ['전역 변수객체'],
+			  this: window,
+		}
+
+		그 후 variable의 name에 'zero'가 대입
+			variable: [{ name: 'zero' }, { wow: Function }, { say: Function }]
+
+	(7)에서 say();로 함수를 호출하는 순간 새로운 컨텍스트가 생김(say함수컨텍스트)-전역컨텍스트는 그대로.
+
+		'say 컨텍스트': {
+			변수객체: {
+				arguments: null,
+				variable: ['name'],
+			},
+			scopeChain: ['say 변수객체', '전역 변수객체'],
+			this: window,
+		}
