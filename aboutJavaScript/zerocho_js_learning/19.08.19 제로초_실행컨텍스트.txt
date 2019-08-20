@@ -80,7 +80,7 @@
 -변수 선언&초기화 시 선언부가 최상단으로 끌어올려지는 현상
 ==========
 
-예제)
+예제1)
 	console.log(zero);			//에러가 아닌 undefined
 	sayWow();				//②정상적으로 wow가 콘솔창에 출력됨
 	function sayWow() {
@@ -88,3 +88,39 @@
 	}				//①함수 표현식이 아닌 함수 선언식-통째로 끌어올려지므로
 	var zero = 'zero';
 
+
+예제2)
+	fucntion sayWow() {
+		console.log('wow');
+	}
+	var zero;
+	console.log(zero);			//정의하지 않았으므로 undefined
+	sayWow();
+	zero = 'zero';			//zero 변수의 값을 zero로 정의함
+
+			@@@예제1 === 예제2@@@
+
+		그러나, 같은 함수여도 함수 표현식으로 선언한 경우 에러가 발생
+
+예제3)
+--주석으로 매기는 번호는 context-following 순서임 ;
+	sayWow();				// (3) 
+	sayYeah();				// (5)여기서 대입되기 전에 호출해서 에러	-선언식이었다면 에러 없었을텐뎅
+	var sayYeah = function() {		// (1)선언	(6)대입
+		console.log('yeah');
+	}
+	function sayWow() {			// (2)선언과 동시에 초기화(호이스팅)
+		console.log('wow');		// (4)
+	}
+
+	 첫 실행시에는 당연히 전역컨텍스트가 먼저 생김. sayWow함수는 함수 선언식이므로, 컨텍스트 생성 후 바로 대입-호이스팅!
+	※잊지마셈 js에서 []는 배열을 나타내는 기호임
+
+		'전역컨텍스트': {
+			'변수객체': {
+				arguments: null,
+				variables: [{ sayWow: Function	/* 함수 선언식으로 작성되어서 요로코롬 바로 대입되어버림*/ }, 'sayYeah'],
+			},
+			scopeChain: ['전역 변수객체'],
+			this: window
+		}
