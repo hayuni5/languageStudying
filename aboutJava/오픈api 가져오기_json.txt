@@ -13,7 +13,7 @@ public class TestJSON {
    public static int INDENT_FACTOR = 4;
    
    public static void main(String[] args) throws MalformedURLException, IOException {
-      String urlStr = "https://oapi.saramin.co.kr/job-search?access-key=5mQHARgJCsD8xIL9eYQjKwihPi7QAZSd0WQBptWGUfGVmYT6KG";
+      String urlStr = "https://oapi.saramin.co.kr/job-search?access-key=[SERVICE-KEY]";
       BufferedReader br = null;
       URL url = new URL(urlStr);
       HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
