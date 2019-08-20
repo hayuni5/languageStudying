@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.json.JSONObject;
+import org.json.XML;
+
+public class TestJSON {
+
+   public static int INDENT_FACTOR = 4;
+   
+   public static void main(String[] args) throws MalformedURLException, IOException {
+      String urlStr = "https://oapi.saramin.co.kr/job-search?access-key=5mQHARgJCsD8xIL9eYQjKwihPi7QAZSd0WQBptWGUfGVmYT6KG";
+      BufferedReader br = null;
+      URL url = new URL(urlStr);
+      HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+         
+         urlconnection.setRequestMethod("GET");
+         br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+      
+      StringBuffer sbResult = new StringBuffer();
+      String line;
+      while((line = br.readLine()) != null) {
+            sbResult.append(line);
+      }
+      
+      System.out.println(sbResult);
+      
+      JSONObject xmlJSONObj = XML.toJSONObject(sbResult.toString());
+      String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
+      System.out.println(jsonPrettyPrintString);
+   }
+
+}
