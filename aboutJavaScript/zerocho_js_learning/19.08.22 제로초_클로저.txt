@@ -1,0 +1,40 @@
+비공개 변수를 가질 수 있는 환경에 있는 함수 -> "클로저"
+※ 비공개변수란? 클로저 함수 내부 생성 변수도 아닌, 매개변수도 아닌 변수
+클로저를 이야기할 때는, 스코프/컨텍스트/비공개변수와 함수의 관계를 항상 함께 거론해야함
+=========================================
+
+예제1)
+	var makeClosure = function() {
+		var name = 'zero';			//비공개변수
+		return function () {
+			console.log(name);
+		}
+	};
+	var closure = makeClosure();			//function() { console.log(name); }
+						   
+	closure();					//'zero';
+
+closure() 안에 console.log(name)이 있음
+name은 closure()의 매개변수도 아니고, closure 함수 내부에서 생성한 변수도 아님 == 비공개변수
+
+여기서 function() { console.log(name) } 은 name변수나, name 변수가 있는 스코프에 대해 클로저라 부를 수 있음(수학적 표현; 자유변수)
+
+예제1) 을 컨텍스트로 분석
+=>		"전역 컨텍스트": {
+			변수객체: {
+				arguments: null,
+				variable: [{ makeClosure: Function }, 'closure' ],
+			}
+			scopeChain: ['전역 변수객체'],
+			this: window
+		}
+		"makeClosure 컨텍스트": {
+			변수객체: {
+				arguments: null,
+				variable: 
+			},
+			scopeChain:,
+			this: window
+		}
+
+ ====집 가서====
