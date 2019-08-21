@@ -26,7 +26,16 @@ const toDoForm = document.querySelector(".toDoForm"), //form태그의 클래스
 
 let toDos = []; //할일 목록 전체를 하나의 배열로 여겨봅시당
 
-function deleteToDo() {}
+function deleteToDo() {
+  const btn = event.target;
+  const liTargeted = btn.parentNode;
+  toDoList.removeChild(liTargeted);
+  const cleanToDos = toDos.filter(function(toDo) {
+    return toDo.id !== parseInt(liTargeted.id);
+  });
+  toDos = cleanToDos;
+  saveToDos();
+}
 
 function saveToDos() {
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); //배열을 통째로 하나로 저장함! 이 toDos배열의 원소들은 또 각각 toDoObj꼴의 객체여
