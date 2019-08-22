@@ -31,10 +31,76 @@ name은 closure()의 매개변수도 아니고, closure 함수 내부에서 생성한 변수도 아님 =
 		"makeClosure 컨텍스트": {
 			변수객체: {
 				arguments: null,
-				variable: 
+				variable: [{ name : 'zero' }] 
 			},
-			scopeChain:,
+			scopeChain: ['makeClosure변수객체', '전역 변수객체'],
 			this: window
 		}
 
- ====집 가서====
+		"closure 컨텍스트" : {
+			변수객체 : {
+				arguments: null,
+				variables: null
+			},
+			scopeChain: ['closure변수객체', 'makeClosure변수객체', '전역 변수객체'],
+			this: window
+		}
+
+		==> closure함수에서 scopeChain을 통해 makeClosure의 name 변수에 접근 가능함
+
+@@카운터 예제-클로저 활용@@
+
+var counter = function() {
+	var count = 0;
+	function changeCount(number) {
+		count += number;
+	}
+	return {
+		increase: function() {
+			changeCount(1);
+		},
+		decrease: function() {
+			changeCount(-1);
+		},
+		show: function() {
+			alert(count);
+		}
+	}
+};
+var counterClosure = counter();	-> counterClosure 통해서 변수 count 접근
+counterClosure.increase();
+counterClosure.show();	//1
+counterClosure.decrease();
+counterClosure.show();	//0
+
+	==> return 안에 들어있는 함수들은 count변수나, changeCount함수 또는 그것들을 포함하고 있는 스코프에 대한 클로저라고 부를 수 있음
+
+비공개변수 -> 남들이 조작할 수 없음
+자바스크립트에서 사용자를 통제하는 기본적인 방법이 클로저임
+단점이 있다면... 잘못 사용했을 때 성능 및 메모리 문제 발생 가능함.. 낭비가 될 수 있기 때문
+
+좀 어려운 예제지만.. 이벤트리스너를 for문으로 연결했을 때의 오류와 모범답안을 보자..
+
+오류예제1)
+	for(var i = 0; i < 5; i++) {
+		$('#target' + i).on('click', function() {
+			alert(i);
+		});
+	}
+		=> #target0 부터 #target4까지 각각 이벤트리스너가
+		연결되긴 했지만 클릭시 alert값이 모두 5
+		∵ 컨텍스트에 대한 이해가 부족하면 이럴 수 있어용
+			//네 어렵다
+		함수는 ""선언 시"" 스코프가 생성됨
+		즉, 이벤트리스너 안의 i는 외부의 i를 계속 참조하고 있슈. i는 반복문 종료 후 최종적으로 5가 되기 때문에 alert결과가 모두 5가 됨
+
+모범답안1)
+	for(var i = 0; i<5; i++) {
+		(function(j) {
+			$('#target' + j).on('click', function() {
+      alert(j);
+});
+})(i);
+}
+
+모람... 넘 어렵군
