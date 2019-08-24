@@ -1,0 +1,66 @@
+상속
+===========
+
+예제1)
+	function Vehicle(name, speed) {
+		this.name = name;
+		this.speed = speed;
+	}
+	Vehicle.prototype.drive = function() {
+		console.log(this.name + ' runs at ' + this.speed)
+	};
+	var tico = new Vehicle('tico', 50);
+	tico.drive();	// 'tico runs at 50'
+	function Sedan(name, speed, maxSpeed) {
+		Vehicle.apply(this, arguments)
+		this.maxSpeed = maxSpeed;
+	}
+	Sedan.prototype = Object.create(Vehicle.prototype);
+	Sedan.prototype.constructor = Sedan;
+	Sedan.prototype.boost = function() {
+		console.log(this.name + ' boosts its speed at ' + this.maxSpeed);
+	};
+	var sonata = new Sedan('sonata', 100, 200);
+	sonata.drive();	// 'sonata runs at 100'
+	sonata.boost();	// 'sonata boosts its speed at 200'
+
+	=> 위의 예제는 상속하는 수많은 방법 중 에러가 거의 없는 방법 중 하나이다.
+
+	Vehicle.apply(this, arguments); === Vehicle의 this들을 그대로 받으라는 뜻
+				       Vehicle 생성자에 this와 arguments를 적용하라는 코드
+	Vehicle 생성자함수가 갖고 있던 this.name과 this.speed를 Sedan생성자함수가 물려받고,
+           Sedan만 가지고 있는 maxSpeed속성을 따로 추가함. 이런 식으로 Vehicle의 속성을 상속/확장받았음
+
+				/* Object.create는 Vehicle.prototype을 상속하는 새 객체 생성 메소드임.
+				   그 객체를 Sedan.prototype에 대입 - Sedan이 Vehicle을 상속하게 됨
+				*/
+	Sedan.prototype = Object.create(Vehicle.prototype);
+	=== Vehicle의 prototype을 Sedan의 prototype과 연결 -> Vehicle의 메소드였던 drive() 사용가능!
+		※ ①Object.create(Vehicle.prototype)과 ②new Vehicle()의 차이?
+		①은 객체를 생성하지만 생성자는 실행하지 않는다. 프로토타입만 넣어주는 것.
+
+	Sedan.prototype.constructor = Sedan;
+	=== 오류 수정 코드임
+	       이 줄이 없으면 Sedan.prototype.constructor === Vehicle이 된답니다.
+	       그래서 Sedan.prototyep.constructor에 Sedan을 다시 넣어주는 것임
+	       다른 방법도 있으니, 자신에게 더 맞는 방법을 쓰면 됨
+
+	Sedan.prototype.boost로 Sedan 자신의 메소드도 만듬.. Vehicle에게 상속받은 drive 메소드도 당연히 쓸 수 있음
+
+
+예제2) Truck생성자도 만들어보기
+	function Truck(name, speed, capacity) {
+		Vehicle.apply(this, arguments);
+		this.capacity = capacity;
+	}
+	Truck.prototype = Object.create(Vehicle.prototype);
+	Truck.prototype.constructor = Truck;
+	Truck.prototype.load = function (weight) {
+		if (weight> this.capacity) {
+			return console.error('아이고 무거워!');
+		}
+		return console.log('짐을 실었습니다!');
+	};
+	var boongboong = new Truck('boongboong', 40, 100);
+	boongboong.drive();		// 'boongboong runs at 40'
+	boongboong.load(120);	// '아이고 무거워!'
