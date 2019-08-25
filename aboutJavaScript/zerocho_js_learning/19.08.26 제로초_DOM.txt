@@ -1,0 +1,67 @@
+Document Object Model - document를 객체로 구현했다고 생각하셈
+계층적 구조여
+
+예시)
+html
+-head
+--title
+--meta
+--link
+-body
+--header#header
+---nav
+---div
+--main
+--footer
+---"hello"	//텍스트 노드
+--script
+
+객체로 표현하면
+{
+document: {
+	html: {
+		head: {
+			title: ...
+		},
+		body: {
+			header: ...
+		}
+	       }
+	}
+}
+
+들어있는 개념; 부모, 형제자매, 자식, 자손, ...
+
+Node와 Element
+-> Node는 태그노드와 텍스트노드 전체를 가리킴
+    Element는 텍스트 노드를 제외, 태그만을 가리킴
+
+
+속성)))
+1. 태그.nodeType	-해당 태그의 종류를 알려주는 숫자가 나옴. 중간에 빈 2, 4, 5, 6은 더 이상 쓰이지 않는 숫자, 7은 거의 안 써서 제로초에선 뺌
+	1(Node.ELEMENT_NODE) -> Element
+	3(Node.TEXT_NODE) -> 텍스트
+	8(Node.COMMENT_NODE) -> 주석
+	9(Node.DOCUMENT_NODE) -> Document
+	10(Node.DOCUMENT_TYPE_NODE) -> DOCTYPE
+	11(Node.DOCUMENT_FRAGMENT_NODE) -> Document Fragment
+
+2. 태그.children, 태그.childNodes
+	자식으로 갈 때는 children(텍스트노드제외) 또는 childNodes(텍스트노드 포함) 사용
+	예제)
+		document.body.children;	// [header, main, footer, script]
+		메인을 선택하고 싶다면 document.body.children[1]로 접근
+
+	이 DOM의 속성들은 모든 태그에 다 사용가능
+
+3. 태그.firstChild, 태그.firstElementChild, 태그.lastChild, 태그.lastElementChild
+	첫번째 자식/첫번째자식(텍스트무시)/마지막 자식/마지막자식(텍스트 무시)
+
+4. 태그.parentNode, 태그.parentElement
+	부모를 찾을 때 사용. 항상 하나이기 때문에 단수형임
+
+5. 태그.previousSibling, 태그.nextSibling, 태그.previousElementSibling, 태그.nextElementSibling
+	형제자매 태그 찾을 시 이용함. 바로 전 혹은 바로 다음 형제자매를 찾아줌 (텍스트무시)
+	예제)	document.getElementsByTagName('main')[0].nextSibling; // <footer></footer>
+
+======집에서 이어서======

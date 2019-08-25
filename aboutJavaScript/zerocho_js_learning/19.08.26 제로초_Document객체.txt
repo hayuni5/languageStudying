@@ -1,0 +1,42 @@
+Document 객체 ; window 객체의 속성임! window.document 로 접근하나, window가 전역객체이므로 생략 가능하여
+		document로 접근하면 됨
+=============
+
+자주 쓰이는 속성 및 메소드))
+
+1. document.getElementById(아이디);
+	html에서 해당 아이디를 가진 태그를 선택
+
+2. document.getElementsByClassName(클래스);
+   document.getElementsByName(이름);
+   document.getElementsByTagName(태그);
+	html에서 각각 해당 클래스, 네임, 태그명을 가진 태그를 선택
+	여러 개 선택되므로 항상 배열임(이 때, 자바스크립트 배열이 아닌 HTMLCollection임)
+
+3. document.querySelector(css 선택자); , document.querySelectorAll(css 선택자);
+	아이디는 #, 클래스는 . 으로 선택가능. 태그명[속성명=속성값] / 부모 > 자식 / 부모 자손 등등
+	css 선택자는 거의 다 쓸 수 있음
+
+4. document.createElement(태그명);
+	document에 새 태그를 만들 때 사용. 변수를 통해 메모리에 저장됨. 만든 태그를 추가하는 메소드는 따로 있고.
+
+5. document.createTextNode(텍스트);
+	텍스트도 하나의 요소임. Node는 태그&텍스트를 가리키는 명칭. 우선 변수를 통해 메모리에 저장됨.
+
+6. document.createDocumentFragment();
+	가짜 document를 만듬. 자바스크립트로 document태그 조작은 성능이 매우 떨어짐.. 여러 태그를 반복문으로 동시 추가할 때 같은.. -> 가짜 document를 만들어 여기에 추가한 후, 한번에 실제 document에 추가하기.!
+	예제)
+		var div = document.createElement('div');
+		var text = document.createTextNode('텍스트');
+		var fragment = document.createDocumentFragment();
+		div.appendChild(text); 	-> <div>텍스트</div> 한 줄 완성.
+		fragment.appendChild(div);	-> 가짜 document에 div태그와 그 내용이 들어감.
+		document.body.appendChild(fragment); -> 실제 document객체의 body태그 밑으로 fragment의 내용이 삽입됨
+
+7. document.head, document.body -> html의 head와 body에 접근가능
+
+8. document.anchors, document.links, document.forms, document.image, document.scripts
+	각각 document 안의 모든 html앵커, 링크, 폼, 이미지, 스크립트에 접근할 수 있음
+
+9. document.title
+	문서 제목(탭에 써 있음)에 접근가능. 물론 변경 가능.
