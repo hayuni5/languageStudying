@@ -2,7 +2,7 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #dddddd;
+  background-color: #525252;
   overflow: hidden;
 }
 
@@ -12,9 +12,19 @@ li {
 
 li a {
   display: block;
-  padding: 8px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
+li a:hover {
+  background-color: #111;
+}
+
+li a.active {
+  background-color: #111;
+}
 /* 
     float: left; -use float to get block elements to slide next to each other
     display: block;
