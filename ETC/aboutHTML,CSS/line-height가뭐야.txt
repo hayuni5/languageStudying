@@ -1,0 +1,18 @@
+line-height는 줄높이를 정하는 속성임
+
+line-height:
+	 normal 웹브라우저 기본값. 보통 1.2
+	/length 길이로 정하기
+	/number 글자 크기의 n배
+	/percentage 글자 크기의 m%
+	/initial 기본값 설정
+	/inherit 부모 요소의 속성값을 상속받음
+
+ex)
+
+font-size: 40px;
+line-height: 1.5
+
+라면, 줄 높이는 40x1.5 = 60px
+글자 크기가 40px이므로, 글자 위아래에 각각 10px 여백이 생김
+줄 높이가 글자크기보다 작으면 세로 방향으로 글자가 겹침

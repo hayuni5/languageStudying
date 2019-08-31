@@ -1,0 +1,31 @@
+display: inline;
+
+<span>태그의 성질
+content/text 크기만큼만 점유
+동일 라인에 붙음
+text 내에 특정 부분에만 스타일을 줄 때 많이 사용됨
+
+- width/height 적용불가
+- margin/padding-top/bottom 적용불가
+- line-height 원하는대로 적용불가(감싸고 있는 div 전체 크기에만 영향)
+
+
+
+display: block;
+무조건 한줄 점유
+다음 태그는 다음줄로
+
+
+display: inline-block;
+inline과 block의 짬뽕.
+성질 자체는 inline과 비슷
+동일 라인에 여러 태그를 붙일 때 쓸 수 있음
+inline의 단점을 카바함
+== width/height 적용가능
+   margin / padding-top / bottom 적용가능
+   line-height 적용가능
+
+※ inline-block간의 공백
+	-> 상위 div에 {font-size: 0;} 적용하여 해결
+   inline-block 간 높이가 안 맞으면 상위 공백이 생김
+	-> {vertical-align: ---;} 값으로 top등을 줘서 맞춰 해결
