@@ -1,0 +1,65 @@
+Object객체 ; 모든 객체의 최종 prototype - Java에서 java.lang.Object 클래스가 최상위 조상 클래스인 것처럼..
+
+이미 구현된 객체의 prototype을 확인할 때는 __proto__를 사용함
+
+
+예제1)
+function Person(name) { this.name = name; }
+Person.prototype.sayHello = function() {
+	alert(this.name);
+};
+var zero = new Person('zero');
+zero.__proto__;				// {sayHello: function()}
+zero.__proto__.__proto__;			// Object { ... }
+
+예제2)
+Math.__proto__;				// Object { ... }
+Math.__proto__.__proto__;			// null
+	=> ∵ Object가 최종 prototype이기 때문에 결과가 null임
+
+Object객체의 생성자는 window 객체에 저장되어 있음
+모든 객체가 Object로부터 상속받고, 따라서 Object객체의 메소드들을 사용가능함
+
+
+
+Object객체의 메소드))
+
+1. 객체.hasOwnProperty(속성명)
+	객체 속성이 상속받지 않은 속성인이 알려줌
+	자기 속성일 시 true / 부모 속성 혹은 속성이 아니면 false
+
+	예제3)
+	var obj = {
+		example: 'yes',
+	};
+	obj.example;			// 'yes'
+	obj.hasOwnProperty('example');	// true
+	obj.toString;			// function toString() { [native code] }
+	obj.hasOwnProperty('toString');	// false
+
+2. 객체.isPrototypeOf(대상)
+	객체가 대상의 조상인지 알려줌
+
+	예제4)
+	var GrandParent = function() { };
+	var Parent = function() { };
+	Parent.prototype = new GrandParent();
+	Parent.prototype.constructor = Parent;
+
+	var Child - function() { };
+	Child.prototype = new Parent();
+	Child.prototype.constructor = Child;
+
+	var child = new Child();
+	Parent.prototype.isPrototypeOf(child);		//true
+	Grandparent.prototype.isPrototypeOf(child);	//true
+
+3. Object.getPrototypeOf(객체), Object.setPrototypeOf(객체, prototype)
+	객체의 property를 조회하거나 설정가능함
+
+	예제4-1)
+	Object.getPrototypeOf(child);	//Grandparent
+	Object.getPrototypeOf(new GrandParent());	// 빈 객체 { }
+	Object.setPrototypeOf(child, new Parent());
+
+============= 저녁에 이어서 ================
