@@ -14,7 +14,7 @@ public class TestJSON {
 	public static int INDENT_FACTOR = 4;
 	
 	public static void main(String[] args) throws MalformedURLException, IOException {
-		String urlStr = "https://oapi.saramin.co.kr/job-search?access-key="+"vJZOQafhP082iX0TSChq7vbEkULfx7gD052H3yErXU5SzwKrZO";/*발급키 필요*/
+		String urlStr = "https://oapi.saramin.co.kr/job-search?access-key="+"발급키";/*발급키 필요*/
 		BufferedReader br = null;
 		URL url = new URL(urlStr);
 		HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
