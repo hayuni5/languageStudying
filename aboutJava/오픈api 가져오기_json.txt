@@ -1,3 +1,5 @@
+package testJSON;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,32 +8,32 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.json.JSONObject;
-import org.json.XML;
 
 public class TestJSON {
 
-   public static int INDENT_FACTOR = 4;
-   
-   public static void main(String[] args) throws MalformedURLException, IOException {
-      String urlStr = "https://oapi.saramin.co.kr/job-search?access-key=[SERVICE-KEY]";
-      BufferedReader br = null;
-      URL url = new URL(urlStr);
-      HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
-         
-         urlconnection.setRequestMethod("GET");
-         br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
-      
-      StringBuffer sbResult = new StringBuffer();
-      String line;
-      while((line = br.readLine()) != null) {
-            sbResult.append(line);
-      }
-      
-      System.out.println(sbResult);
-      
-      JSONObject xmlJSONObj = XML.toJSONObject(sbResult.toString());
-      String jsonPrettyPrintString = xmlJSONObj.toString(INDENT_FACTOR);
-      System.out.println(jsonPrettyPrintString);
-   }
+	public static int INDENT_FACTOR = 4;
+	
+	public static void main(String[] args) throws MalformedURLException, IOException {
+		String urlStr = "https://oapi.saramin.co.kr/job-search?access-key="+"vJZOQafhP082iX0TSChq7vbEkULfx7gD052H3yErXU5SzwKrZO";/*발급키 필요*/
+		BufferedReader br = null;
+		URL url = new URL(urlStr);
+		HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+			
+			urlconnection.setRequestMethod("GET");
+			urlconnection.setRequestProperty("Accept", "application/json");
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+		
+		StringBuffer sbResult = new StringBuffer();
+		String line;
+		while((line = br.readLine()) != null) {
+				sbResult.append(line);
+		}
+				
+		JSONObject json = new JSONObject(sbResult.toString());
+		
+		String jsonPrettyPrintString = json.toString(INDENT_FACTOR);
+		System.out.println(jsonPrettyPrintString);
+		
+	}
 
 }
