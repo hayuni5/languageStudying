@@ -1,0 +1,15 @@
+html : hyper text mark-up language
+	- mark-up language : 어디부터 어디까지가 무엇을 뜻하는지 markup(표시)하여 나타내는 언어.
+ 브라우저에게 어떤 게 제목이고 링크고 리스트고 문단인지 알려준다.
+
+css: 브라우저에게 각 요소들이 어떻게 생겨먹었는지 알려준다.
+
+html, css - 보완관계!
+
+둘다 프로그래밍 언어가 아니야!!!!
+
+===================================================
+
+
+html is made of bunch of texts called "TAG"
+규칙들이 있다잉

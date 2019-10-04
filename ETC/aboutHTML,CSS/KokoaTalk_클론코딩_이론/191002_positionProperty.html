@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Position</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        /*브라우저가 가진 기본값을 상쇄시키기 위해 margin과 padding을 0으로 따로 설정함*/
+      }
+      body {
+        height: 400%;
+        background-color: red;
+      }
+      /*  Position Static - 기본값임. element를 붙이면 거기 그대로 있다.!
+        #boxOne {
+         width: 300px;
+         height: 300px;
+         background-color: yellow;
+         position: static;
+         == 그 element를 거기 놓으면 거기 있을 것이다~ 라는 뜻
+         스크롤하면? 스크롤함에 따라 화면에서는 사라짐
+
+       } */
+
+      /* Position Fixed - 모든 element보다 앞에 나와서 고정된 위치를 가짐. 그래서 스크롤해도 볼 수가 있음
+        #boxTwo {
+         width: 100%;
+         height: 300px;
+         background-color: green;
+         position: fixed;
+         /* top: 10px; */
+      /*  bottom: 10px; */
+      /* right: 0px; */
+      /* left: 0; */
+
+      /* 스크롤해도 사라지지 않는다... 아예 그냥 그 자리에 고정임. 아주 컴퓨터 디스플레이화면에 고정되어있는 것처럼ㅇㅇ
+         포지션을 fixed한 뒤 상, 하, 좌, 우 간격을 설정할 수 있음. */
+
+      .abs-box {
+        width: 400px;
+        height: 400px;
+        background-color: yellow;
+        position: relative;
+      }
+
+      .abs-child {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      Position static vs fixed
+
+      <div id="boxOne">
+      <div class="box-child"></div>
+    </div>
+    <div id="boxTwo">
+      <div class="box-child"></div>
+    </div> -->
+    <div class="abs-box">
+      <div class="abs-child"></div>
+      <!-- abs-child클래스의 div에 해당하는 박스가 맨 오른쪽으로 이동함.
+      부모에 해당하는 박스를 찾지 못해서... 이게 몬 말이냐?
+      position:absolute를 가진 박스는 html문서상에서 ""position:relative"인 박스를 찾아
+      그에 상응하여(그 부모박스를 기준으로 하여) 위치가 결정되는 것임.
+      이 경우, position:relative인 부모박스가 없으므로 문서본문인 body에 맞추어 자리를 잡는다-->
+    </div>
+  </body>
+</html>

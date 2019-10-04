@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Element States</title>
+    <style>
+      .box {
+        background-color: red;
+        color: white;
+        font-size: 40px;
+      }
+
+      .box:hover {
+        background-color: pink;
+        color: black;
+      }
+
+      .box:active {
+        background-color: skyblue;
+        /* 클릭할 때마다 색이 바뀌는 것을 확인할 수 있음. */
+      }
+
+      .box:focus {
+        background-color: white;
+      }
+
+      /* hover보다 focus가 더 중요하고, 마지막 명령이므로 hover 명령이 무시됨 */
+    </style>
+  </head>
+  <body>
+    <textarea class="box">Hello World!</textarea>
+  </body>
+</html>

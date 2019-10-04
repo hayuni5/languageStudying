@@ -1,0 +1,42 @@
+2-4단원
+
+<!DOCTYPE html> ; 구글 크롬으로 하여금 현재 문서가 html문서임을 알려줌 - self-contained tag(그 자체로 정보를 담고 있는 태그)
+<html></html> 안의 모든 내용은 html문서임
+<head></head> - invisible; 브라우저에게 웹사이트에 관한 필요한 정보를 제공할뿐.
+	title 태그
+<body></body> -  visible; 사람들이 보는 컨텐츠가 담기는 부분
+	h1, h6 태그
+
+2-5.
+<head>안의 <meta> : 브라우저에게 알릴 추가정보(접근사용자를 위한 정보가 아님!)
+ - <meta charset="utf-8"> 캐릭터셋 설정  ; 브라우저에게 내가 작성하는 문서가 어떤 언어로 작성되었는지 알림.
+- <meta name="description" content="welcome to my Kakao Clone">
+	; 이 내용은 어디서 확인가능하나...
+	 ex) 구글에 '오렌지'를 검색했을 때, 글제목과 링크 밑의 간략한 설명글 있찌? 그게 meta name의 content임!!
+- <meta name="author" content="Hayun Noh">
+- 여러 종류의 meta 태그가 있다.. 어떤 태그는 트위터 / 네이버 / 페이스북 등 특정 플랫폼을 위해 존재하기도 함.
+
+2-6.
+semantic / non-semantic
+-semantic : means something = 의미가 있는 태그
+	h1 ("큰 제목"), section ("섹션"), article, header
+-non-semantic : 의미가 없음. 지칭하는 바가 없음
+	div - 박스, 컨테이너의 개념
+	span - 텍스트를 위한 컨테이너 개념
+
+2-7.
+태그에 id와 클래스 멕이기
+수많은 태그들... 같은 태그라도 다른 것을 표시하기 위해 쓴다.
+ex)
+	<section>
+		<header>
+			<h1>샤싣</h1>
+		</header>
+	</section>
+	<div>
+		<header>Title of the unknown container</header>
+	</div>
+	=> 두 헤더를 구분할 수 없다. css 멕일 때 중요하다구.. js에서도 ㅇㅇ
+	구분할 방법 두 가지임. 
+	1. id : 고유 element를 사용할 때 적용. cannot be shared. 헤더나 내비게이션에 이용
+	2. class : 고유하지 않음. can be shared! 동일한 속성을 이용할 때... 반복element. 계속 쓸 수 있음
