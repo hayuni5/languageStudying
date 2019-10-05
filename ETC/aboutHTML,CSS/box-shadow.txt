@@ -1,0 +1,2 @@
+box-shadow 지정하기
+    box-shadow: 수평값 수직값 blur정도 spread값 color (inset;안쪽그림자) (initial;초기화) 
