@@ -1,0 +1,7 @@
+그라디언트색상 추천 - 사용가능한 사이트
+
+uigradients.com
+
+그라디언트는 background-color 가 아님!!
+그라디언트는 background-image 임 !! ! 
+	 background-image: linear-gradient(to right/left/top/bottom, 색상1, 색상2, ... );

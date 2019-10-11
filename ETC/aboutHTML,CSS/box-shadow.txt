@@ -1,2 +1,23 @@
 box-shadow 지정하기
-    box-shadow: 수평값 수직값 blur정도 spread값 color (inset;안쪽그림자) (initial;초기화) 
+
+구문))
+box-shadow: 60px -16px teal;
+	/* offset-x | offset-y | color */
+
+box-shadow: 10px 5px 5px black;
+/* offset-x | offset-y | blur-radius | color */
+
+box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+
+box-shadow: inset 5em 1em gold;
+/* inset( | offset-x | offset-y | color */
+
+
+/* Any number of shadows, separated by commas */
+box-shadow: 3px 3px red, -1em 0 0.4em olive;
+
+/* Global keywords */
+box-shadow: inherit;
+box-shadow: initial;
+box-shadow: unset;
