@@ -1,8 +1,16 @@
-°£·«)
+ê°„ëžµ)
 
-rem°ú em ¸ðµÎ CSS ±æÀÌ´ÜÀ§ÀÇ ÀÏºÎÀÓ
-ÇÏÁö¸¸ Â÷ÀÌÁ¡ÀÌ ÀÖÀ½
+remê³¼ em ëª¨ë‘ CSS ê¸¸ì´ë‹¨ìœ„ì˜ ì¼ë¶€ìž„
+í•˜ì§€ë§Œ ì°¨ì´ì ì´ ìžˆìŒ
 
-em; ÀÚ½ÅÀÇ »óÀ§ ¿ä¼Ò¸¦ ±âÁØÀ¸·Î ¸î ¹èÀÎÁö Å©±â¸¦ Á¤ÇÔ
-rem;  ¹®¼­ÀÇ ÃÖ»óÀ§ ¿ä¼ÒÀÎ htmlÀ» ±âÁØÀ¸·Î ¸î ¹èÀÎÁö Å©±â¸¦ Á¤ÇÔ
-	(html-À¥ ºê¶ó¿ìÀú-ÀÇ ±âº» ±ÛÀÚ Å©±â ´ÜÀ§´Â 16pxÀÓ!)
+em; ìžì‹ ì˜ ìƒìœ„ ìš”ì†Œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ëª‡ ë°°ì¸ì§€ í¬ê¸°ë¥¼ ì •í•¨
+rem;  ë¬¸ì„œì˜ ìµœìƒìœ„ ìš”ì†Œì¸ htmlì„ ê¸°ì¤€ìœ¼ë¡œ ëª‡ ë°°ì¸ì§€ í¬ê¸°ë¥¼ ì •í•¨
+	(html-ì›¹ ë¸Œë¼ìš°ì €-ì˜ ê¸°ë³¸ ê¸€ìž í¬ê¸° ë‹¨ìœ„ëŠ” 16pxìž„!)
+
+
+/*ì°¸ê³ ;
+
+CSSì˜ ê¸¸ì´ë‹¨ìœ„
+https://developer.mozilla.org/ko/docs/Web/CSS/length
+
+*/
